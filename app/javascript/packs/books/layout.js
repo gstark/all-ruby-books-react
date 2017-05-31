@@ -19,6 +19,14 @@ export default class Layout extends React.Component
     .catch(err => console.log(err.name, err.message))
   }
 
+  authors () {
+    const flatMap = (array, callback) => [].concat.apply([], array.map(callback))
+
+    const allNames = flatMap(this.state.books, (book) => book.authors.map((author) => author.name))
+
+    return [...new Set(allNames)].sort((a,b) => a.localeCompare(b))
+  }
+
   render () {
     return (
       <div>
@@ -30,6 +38,9 @@ export default class Layout extends React.Component
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} href="/">Home</NavItem>
+            <NavDropdown eventKey={'authors'} title="Authors" id='authors'>
+              {this.authors().map((author) => <MenuItem key={author} eventKey={author}>{author}</MenuItem>)}
+            </NavDropdown>
           </Nav>
         </Navbar>
         <Grid>
