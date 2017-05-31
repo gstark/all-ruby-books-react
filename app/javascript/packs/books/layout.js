@@ -55,7 +55,7 @@ export default class Layout extends React.Component
           <Nav>
             <NavItem eventKey={1} href="/">Home</NavItem>
             <NavDropdown eventKey={'authors'} title={this.authorMenuTitle()} id='authors'>
-              {this.authors().map((author) => <MenuItem key={author} eventKey={author} onSelect={this.selectAuthor.bind(this, author)}>{author}</MenuItem>)}
+              {this.authors().map((author) => <MenuItem key={author} eventKey={author} active={author === this.state.author} onSelect={this.selectAuthor.bind(this, author)}>{author}</MenuItem>)}
             </NavDropdown>
           </Nav>
         </Navbar>
