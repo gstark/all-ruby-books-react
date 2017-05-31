@@ -2,6 +2,8 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button, Grid } from 'react-bootstrap'
 import jsonFetch from 'json-fetch'
+import flatMap from 'lodash.flatmap'
+import uniq from 'lodash.uniq'
 
 import Books from './books'
 
@@ -19,9 +21,7 @@ export default class Layout extends React.Component
     .catch(err => console.log(err.name, err.message))
   }
 
-  flatMap = (array, callback) =>  [].concat.apply([], array.map(callback))
-
-  authors = (books) => [...new Set(this.flatMap(books, (book) => book.authors.map((author) => author.name)))].sort((a,b) => a.localeCompare(b))
+  authors = (books) => uniq(flatMap(books, (book) => book.authors.map((author) => author.name))).sort((a,b) => a.localeCompare(b))
 
   selectAuthor = (author) => {
     this.setState({author: author})

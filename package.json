@@ -20,6 +20,8 @@
     "glob": "^7.1.2",
     "js-yaml": "^3.8.4",
     "json-fetch": "^7.0.1",
+    "lodash.flatmap": "^4.5.0",
+    "lodash.uniq": "^4.5.0",
     "node-sass": "^4.5.3",
     "path-complete-extname": "^0.1.0",
     "postcss-loader": "^2.0.5",
