@@ -1,24 +1,6 @@
-# README
+# All Ruby Books
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+Reimplements parts of [allrubybooks.com](http://www.allrubybooks.com)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Demonstrates the use of React and webpack in Rails via [webpacker](https://github.com/rails/webpacker)
