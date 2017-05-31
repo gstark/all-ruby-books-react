@@ -27,6 +27,14 @@ export default class Layout extends React.Component
     return [...new Set(allNames)].sort((a,b) => a.localeCompare(b))
   }
 
+  books () {
+    return this.state.books
+  }
+
+  selectAuthor (author) {
+    console.log(`selected ${author}`)
+  }
+
   render () {
     return (
       <div>
@@ -39,12 +47,12 @@ export default class Layout extends React.Component
           <Nav>
             <NavItem eventKey={1} href="/">Home</NavItem>
             <NavDropdown eventKey={'authors'} title="Authors" id='authors'>
-              {this.authors().map((author) => <MenuItem key={author} eventKey={author}>{author}</MenuItem>)}
+              {this.authors().map((author) => <MenuItem key={author} eventKey={author} onSelect={this.selectAuthor.bind(this, author)}>{author}</MenuItem>)}
             </NavDropdown>
           </Nav>
         </Navbar>
         <Grid>
-          <Books books={this.state.books}/>
+          <Books books={this.books()}/>
         </Grid>
       </div>
     )
