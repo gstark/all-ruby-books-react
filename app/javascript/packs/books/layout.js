@@ -15,7 +15,7 @@ export default class Layout extends React.Component
     jsonFetch('/books.json', {
       method: 'GET',
     })
-    .then(response => this.setState({ books: response.body, authors: this.authors(response.body) }))
+    .then(response => this.setState({ books: response.body, authors: [null].concat(this.authors(response.body)) }))
     .catch(err => console.log(err.name, err.message))
   }
 
@@ -39,8 +39,7 @@ export default class Layout extends React.Component
           <Nav>
             <NavItem eventKey={1} href="/">Home</NavItem>
             <NavDropdown eventKey={'authors'} title={this.state.author ? this.state.author : "Authors"} id='authors'>
-              <MenuItem key='All' eventKey='All' active={null === this.state.author} onSelect={this.selectAuthor.bind(this, null)}>All</MenuItem>
-              {this.state.authors.map((author) => <MenuItem key={author} eventKey={author} active={author === this.state.author} onSelect={this.selectAuthor.bind(this, author)}>{author}</MenuItem>)}
+              {this.state.authors.map((author) => <MenuItem key={author || 'All'} eventKey={author || 'All'} active={author === this.state.author} onSelect={this.selectAuthor.bind(this, author)}>{author || 'All'}</MenuItem>)}
             </NavDropdown>
           </Nav>
         </Navbar>
