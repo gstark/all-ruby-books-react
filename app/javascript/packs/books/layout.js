@@ -10,7 +10,7 @@ export default class Layout extends React.Component
   constructor (props) {
     super(props)
 
-    this.state = { books: [] }
+    this.state = { books: [], author: null }
 
     jsonFetch('/books.json', {
       method: 'GET',
@@ -28,11 +28,19 @@ export default class Layout extends React.Component
   }
 
   books () {
-    return this.state.books
+    if (this.state.author) {
+      return this.state.books.filter(book => book.authors.filter(author => author.name === this.state.author).length > 0)
+    } else {
+      return this.state.books
+    }
   }
 
   selectAuthor (author) {
-    console.log(`selected ${author}`)
+    this.setState({author: author})
+  }
+
+  authorMenuTitle () {
+    return this.state.author ? this.state.author : "Authors"
   }
 
   render () {
@@ -46,7 +54,7 @@ export default class Layout extends React.Component
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} href="/">Home</NavItem>
-            <NavDropdown eventKey={'authors'} title="Authors" id='authors'>
+            <NavDropdown eventKey={'authors'} title={this.authorMenuTitle()} id='authors'>
               {this.authors().map((author) => <MenuItem key={author} eventKey={author} onSelect={this.selectAuthor.bind(this, author)}>{author}</MenuItem>)}
             </NavDropdown>
           </Nav>
