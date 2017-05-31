@@ -6,6 +6,12 @@ import Books from './books'
 
 export default class Layout extends React.Component
 {
+  constructor (props) {
+    super(props)
+
+    this.state = { books: [ {id: 5, title: 'hello', editor: 'Frank', year: 1980, prices: '$5'}] }
+  }
+
   render () {
     return (
       <div>
@@ -20,7 +26,7 @@ export default class Layout extends React.Component
           </Nav>
         </Navbar>
         <Grid>
-          <Books/>
+          <Books books={this.state.books}/>
         </Grid>
       </div>
     )
