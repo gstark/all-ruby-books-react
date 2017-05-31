@@ -17,7 +17,7 @@ export default class Books extends React.Component
   render () {
     return (
       <Row>
-        {this.books().map((book) => <Book key={book.id} {...book}/>)}
+        {this.books().map((book) => <Book key={book.id} selectAuthor={this.props.selectAuthor} {...book}/>)}
       </Row>
     )
   }

@@ -23,7 +23,7 @@ export default class Layout extends React.Component
 
   authors = (books) => [...new Set(this.flatMap(books, (book) => book.authors.map((author) => author.name)))].sort((a,b) => a.localeCompare(b))
 
-  selectAuthor (author) {
+  selectAuthor = (author) => {
     this.setState({author: author})
   }
 
@@ -45,7 +45,7 @@ export default class Layout extends React.Component
           </Nav>
         </Navbar>
         <Grid>
-          <Books books={this.state.books} author={this.state.author}/>
+          <Books selectAuthor={this.selectAuthor} books={this.state.books} author={this.state.author}/>
         </Grid>
       </div>
     )
