@@ -13,7 +13,7 @@ export default class Book extends React.Component
   render () {
     return (
       <Col md={4}>
-        <div className="book-panel">
+        <div className="book-component">
           <h2>{this.props.title}</h2>
           <ul className="categories">
             {this.props.categories.map(category => <li key={category.name}>{category.name}</li>)}
